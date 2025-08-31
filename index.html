@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coffee Corner - Artisanal Coffee & Pastries</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'Raleway', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      background: linear-gradient(to bottom, #f9f6f2, #f5f1eb);
+      color: #3c2f23;
+      line-height: 1.6;
+    }
+    
+    header {
+      background: linear-gradient(to right, #6f4e37, #8b6b4c);
+      color: white;
+      padding: 1.5rem 1rem;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-size: 2.2rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    nav {
+      background: #6f4e37;
+      display: flex;
+      justify-content: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    nav a {
+      color: white;
+      padding: 1rem 1.5rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+    
+    nav a:hover {
+      background: #5a3d29;
+      transform: translateY(-2px);
+    }
+    
+    section {
+      padding: 3rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 2.5rem;
+      color: #6f4e37;
+      font-size: 2.2rem;
+      position: relative;
+    }
+    
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 4px;
+      background: #6f4e37;
+      margin: 10px auto;
+      border-radius: 2px;
+    }
+    
+    .menu-items {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+    
+    .menu-item {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    
+    .menu-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(111, 78, 55, 0.2);
+    }
+    
+    .menu-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 1.2rem;
+      transition: transform 0.3s ease;
+    }
+    
+    .menu-item:hover .menu-img {
+      transform: scale(1.05);
+    }
+    
+    .menu-item h3 {
+      margin: 0.8rem 0;
+      color: #3c2f23;
+      font-size: 1.3rem;
+    }
+    
+    .price {
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #6f4e37;
+      margin: 0.8rem 0;
+    }
+    
+    .btn {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 12px 24px;
+      background: #6f4e37;
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .btn:hover {
+      background: #5a3d29;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(111, 78, 55, 0.3);
+    }
+    
+    .btn i {
+      margin-right: 8px;
+    }
+    
+    .hero {
+      text-align: center;
+      padding: 3rem 1rem;
+      background: linear-gradient(rgba(111, 78, 55, 0.85), rgba(139, 107, 76, 0.9)), url('https://images.unsplash.com/photo-1447933601403-0c6688de566e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80') center/cover;
+      color: white;
+      border-radius: 12px;
+      margin-bottom: 3rem;
+    }
+    
+    .hero h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto 1.5rem;
+    }
+    
+    .hero-btn {
+      background: white;
+      color: #6f4e37;
+      padding: 14px 28px;
+      font-weight: bold;
+    }
+    
+    .hero-btn:hover {
+      background: #f9f6f2;
+      color: #5a3d29;
+    }
+    
+    .about-content, .contact-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      align-items: center;
+    }
+    
+    .about-img, .contact-img {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    footer {
+      background: #3c2f23;
+      color: white;
+      text-align: center;
+      padding: 2.5rem 1rem;
+      margin-top: 3rem;
+    }
+    
+    .footer-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .social-icons {
+      margin: 1.5rem 0;
+    }
+    
+    .social-icons a {
+      color: white;
+      font-size: 1.8rem;
+      margin: 0 12px;
+      transition: color 0.3s ease;
+    }
+    
+    .social-icons a:hover {
+      color: #c0a080;
+    }
+    
+    .menu-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #6f4e37;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 4px;
+      font-weight: bold;
+      font-size: 0.8rem;
+    }
+    
+    .menu-container {
+      position: relative;
+    }
+    
+    .category-filter {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    
+    .category-btn {
+      padding: 10px 20px;
+      background: white;
+      border: 2px solid #6f4e37;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    
+    .category-btn.active, .category-btn:hover {
+      background: #6f4e37;
+      color: white;
+    }
+    
+    .testimonials {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    
+    .testimonial {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    }
+    
+    .testimonial-text {
+      font-style: italic;
+      margin-bottom: 1rem;
+    }
+    
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .author-img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    
+    .rating {
+      color: #ffc107;
+      margin-top: 5px;
+    }
+    
+    .hours {
+      margin-top: 1.5rem;
+    }
+    
+    .hours h3 {
+      color: #6f4e37;
+      margin-bottom: 0.5rem;
+    }
+    
+    .hours-list {
+      list-style: none;
+    }
+    
+    .hours-list li {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.3rem;
+    }
+    
+    @media (max-width: 768px) {
+      .about-content, .contact-content {
+        grid-template-columns: 1fr;
+      }
+      
+      nav {
+        flex-wrap: wrap;
+      }
+      
+      .hero h2 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <i class="fas fa-coffee"></i>
+      <h1>Coffee Corner</h1>
+    </div>
+    <p>Artisanal coffee & pastries delivered fresh</p>
+  </header>
+
+  <nav>
+    <a href="#home"><i class="fas fa-home"></i> Home</a>
+    <a href="#menu"><i class="fas fa-mug-hot"></i> Menu</a>
+    <a href="#about"><i class="fas fa-info-circle"></i> About</a>
+    <a href="#contact"><i class="fas fa-phone-alt"></i> Contact</a>
+  </nav>
+
+  <!-- Home Section -->
+  <section id="home">
+    <div class="hero">
+      <h2>Welcome to Coffee Corner</h2>
+      <p>Experience the finest specialty coffees and freshly baked pastries, delivered to your door or enjoyed in our cozy café</p>
+      <a href="#menu" class="btn hero-btn">Order Now <i class="fas fa-arrow-right"></i></a>
+    </div>
+  </section>
+
+  <!-- Menu Section -->
+  <section id="menu">
+    <h2 class="section-title">Our Menu</h2>
+    
+    <div class="category-filter">
+      <button class="category-btn active">All</button>
+      <button class="category-btn">Coffee</button>
+      <button class="category-btn">Tea</button>
+      <button class="category-btn">Pastries</button>
+      <button class="category-btn">Breakfast</button>
+    </div>
+    
+    <div class="menu-items">
+      <div class="menu-item">
+        <div class="menu-container">
+          <span class="menu-badge">Popular</span>
+          <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Espresso" class="menu-img">
+        </div>
+        <h3>Signature Espresso</h3>
+        <p>Our house blend with rich flavor and perfect crema</p>
+        <p class="price">₹180</p>
+        <a href="#" class="btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+      </div>
+      <div class="menu-item">
+        <div class="menu-container">
+          <span class="menu-badge">New</span>
+          <img src="https://images.unsplash.com/photo-1561047029-3000c68339ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Cappuccino" class="menu-img">
+        </div>
+        <h3>Velvet Cappuccino</h3>
+        <p>Perfect balance of espresso, steamed milk and foam</p>
+        <p class="price">₹220</p>
+        <a href="#" class="btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+      </div>
+      <div class="menu-item">
+        <div class="menu-container">
+          <span class="menu-badge">Seasonal</span>
+          <img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Cold Brew" class="menu-img">
+        </div>
+        <h3>Cold Brew Delight</h3>
+        <p>Slow-steeped for 18 hours with hints of chocolate</p>
+        <p class="price">₹250</p>
+        <a href="#" class="btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+      </div>
+      <div class="menu-item">
+        <div class="menu-container">
+          <span class="menu-badge">Special</span>
+          <img src="https://images.unsplash.com/photo-1564890369478-c89ca6d9cde9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Croissant" class="menu-img">
+        </div>
+        <h3>Butter Croissant</h3>
+        <p>Flaky, buttery pastry made fresh daily</p>
+        <p class="price">₹150</p>
+        <a href="#" class="btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+      </div>
+      <div class="menu-item">
+        <div class="menu-container">
+          <span class="menu-badge">Sweet</span>
+          <img src="https://images.unsplash.com/photo-1586985289688-ca3cf47d3e6d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Cinnamon Roll" class="menu-img">
+        </div>
+        <h3>Cinnamon Roll</h3>
+        <p>Swirled with cinnamon and topped with cream cheese icing</p>
+        <p class="price">₹190</p>
+        <a href="#" class="btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+      </div>
+      <div class="menu-item">
+        <div class="menu-container">
+          <span class="menu-badge">Healthy</span>
+          <img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Avocado Toast" class="menu-img">
+        </div>
+        <h3>Avocado Toast</h3>
+        <p>Sourdough toast with smashed avocado, seeds and herbs</p>
+        <p class="price">₹280</p>
+        <a href="#" class="btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+      </div>
+      <div class="menu-item">
+        <div class="menu-container">
+          <span class="menu-badge">Refreshing</span>
+          <img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Iced Tea" class="menu-img">
+        </div>
+        <h3>Peach Iced Tea</h3>
+        <p>Freshly brewed tea with natural peach flavor</p>
+        <p class="price">₹160</p>
+        <a href="#" class="btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+      </div>
+      <div class="menu-item">
+        <div class="menu-container">
+          <span class="menu-badge">Decadent</span>
+          <img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Chocolate Cake" class="menu-img">
+        </div>
+        <h3>Chocolate Ganache Cake</h3>
+        <p>Rich chocolate cake with smooth ganache frosting</p>
+        <p class="price">₹320</p>
+        <a href="#" class="btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section id="testimonials">
+    <h2 class="section-title">What Our Customers Say</h2>
+    <div class="testimonials">
+      <div class="testimonial">
+        <div class="testimonial-text">
+          "The best coffee I've had in this city! Their baristas truly know how to craft the perfect cup. The atmosphere in the café is so cozy too."
+        </div>
+        <div class="testimonial-author">
+          <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Customer" class="author-img">
+          <div>
+            <h4>Meera Desai</h4>
+            <div class="rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial">
+        <div class="testimonial-text">
+          "I get their pastries delivered every Sunday morning. Always fresh and delicious. The almond croissant is my absolute favorite!"
+        </div>
+        <div class="testimonial-author">
+          <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Customer" class="author-img">
+          <div>
+            <h4>Arjun Mehta</h4>
+            <div class="rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial">
+        <div class="testimonial-text">
+          "As a remote worker, Coffee Corner is my office away from home. Great WiFi, amazing coffee, and the staff remembers my usual order."
+        </div>
+        <div class="testimonial-author">
+          <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Customer" class="author-img">
+          <div>
+            <h4>Priya Reddy</h4>
+            <div class="rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about">
+    <h2 class="section-title">Our Story</h2>
+    <div class="about-content">
+      <div>
+        <p>Coffee Corner began in 2015 with a simple mission: to serve exceptional coffee in a warm, welcoming environment. Our founders, two coffee enthusiasts who traveled the world tasting coffee, wanted to bring that global experience to our community.</p>
+        <p>We source our beans directly from sustainable farms and roast them in small batches to ensure maximum freshness and flavor. Our pastries are baked fresh daily using locally sourced ingredients whenever possible.</p>
+        <p>Whether you're stopping by for your morning espresso or having pastries delivered for a special occasion, we're committed to making your experience memorable.</p>
+        <br>
+        <a href="#contact" class="btn"><i class="fas fa-phone-alt"></i> Visit Us</a>
+      </div>
+      <div>
+        <img src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Coffee Shop Interior" class="about-img">
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <h2 class="section-title">Visit Us</h2>
+    <div class="contact-content">
+      <div>
+        <img src="https://images.unsplash.com/photo-1463797221720-6b07e6426c24?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Coffee Shop Exterior" class="contact-img">
+      </div>
+      <div>
+        <p><i class="fas fa-envelope"></i> <strong>Email:</strong> hello@coffeecorner.com</p>
+        <p><i class="fas fa-phone"></i> <strong>Phone:</strong> +91 91234 56789</p>
+        <p><i class="fas fa-map-marker-alt"></i> <strong>Address:</strong> 456 Brew Street, Bangalore, Karnataka 560001</p>
+        
+        <div class="hours">
+          <h3>Opening Hours</h3>
+          <ul class="hours-list">
+            <li><span>Monday - Friday:</span> <span>7:00 AM - 8:00 PM</span></li>
+            <li><span>Saturday:</span> <span>8:00 AM - 9:00 PM</span></li>
+            <li><span>Sunday:</span> <span>8:00 AM - 6:00 PM</span></li>
+          </ul>
+        </div>
+        
+        <br>
+        <a href="#" class="btn"><i class="fab fa-whatsapp"></i> Order via WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-content">
+      <div class="logo">
+        <i class="fas fa-coffee"></i>
+        <h3>Coffee Corner</h3>
+      </div>
+      <p>Brewing happiness since 2015</p>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-pinterest"></i></a>
+      </div>
+      <p>&copy; 2023 Coffee Corner. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Simple category filter functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const categoryButtons = document.querySelectorAll('.category-btn');
+      
+      categoryButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          // Remove active class from all buttons
+          categoryButtons.forEach(btn => btn.classList.remove('active'));
+          
+          // Add active class to clicked button
+          this.classList.add('active');
+          
+          // In a real implementation, this would filter the menu items
+          // For this example, we'll just show an alert
+          if(this.textContent !== 'All') {
+            alert('Filtering by: ' + this.textContent);
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
